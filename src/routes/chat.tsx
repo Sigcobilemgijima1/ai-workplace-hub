@@ -189,7 +189,7 @@ function ChatInterface() {
                 </div>
                 <div className="rounded-2xl bg-destructive/10 px-4 py-3 text-sm text-destructive">
                   <p>Something went wrong. {error.message || "Please try again."}</p>
-                  <Button variant="outline" size="sm" className="mt-2" onClick={() => reload()}>
+                  <Button variant="outline" size="sm" className="mt-2" onClick={() => setMessages((m) => m.filter((msg) => msg.role !== "assistant" || msg.id !== m[m.length - 1]?.id))}>
                     <RotateCcw className="mr-2 h-3 w-3" />
                     Retry
                   </Button>
