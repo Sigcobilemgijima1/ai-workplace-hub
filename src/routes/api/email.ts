@@ -1,4 +1,4 @@
-import { createLovableAiGatewayProvider } from "@/lib/ai-gateway.server";
+import { createLovableAiGatewayProvider, getLovableAiGatewayResponseHeaders } from "@/lib/ai-gateway.server";
 import { createFileRoute } from "@tanstack/react-router";
 import { generateText, Output } from "ai";
 import { z } from "zod";
