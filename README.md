@@ -40,8 +40,6 @@ Handle user prompts and responses
 
 # Setup instructions
 
-Absolutely! Here's a clean, professional **Setup Instructions** section ready to copy and paste into your `README.md` file for the **AI-Productivity-Assistant** project.
-
 ## Setup Instructions
 
 ### Prerequisites
