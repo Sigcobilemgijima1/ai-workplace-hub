@@ -13,6 +13,7 @@ import { Route as TaskPlannerRouteImport } from './routes/task-planner'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as MeetingNotesRouteImport } from './routes/meeting-notes'
 import { Route as EmailGeneratorRouteImport } from './routes/email-generator'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiTasksRouteImport } from './routes/api/tasks'
 import { Route as ApiResearchRouteImport } from './routes/api/research'
@@ -38,6 +39,11 @@ const MeetingNotesRoute = MeetingNotesRouteImport.update({
 const EmailGeneratorRoute = EmailGeneratorRouteImport.update({
   id: '/email-generator',
   path: '/email-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -73,6 +79,7 @@ const ApiChatRoute = ApiChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/meeting-notes': typeof MeetingNotesRoute
   '/research': typeof ResearchRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/meeting-notes': typeof MeetingNotesRoute
   '/research': typeof ResearchRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/meeting-notes': typeof MeetingNotesRoute
   '/research': typeof ResearchRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/chat'
     | '/email-generator'
     | '/meeting-notes'
     | '/research'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/chat'
     | '/email-generator'
     | '/meeting-notes'
     | '/research'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/chat'
     | '/email-generator'
     | '/meeting-notes'
     | '/research'
@@ -149,6 +161,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatRoute: typeof ChatRoute
   EmailGeneratorRoute: typeof EmailGeneratorRoute
   MeetingNotesRoute: typeof MeetingNotesRoute
   ResearchRoute: typeof ResearchRoute
@@ -188,6 +201,13 @@ declare module '@tanstack/react-router' {
       path: '/email-generator'
       fullPath: '/email-generator'
       preLoaderRoute: typeof EmailGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -237,6 +257,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatRoute: ChatRoute,
   EmailGeneratorRoute: EmailGeneratorRoute,
   MeetingNotesRoute: MeetingNotesRoute,
   ResearchRoute: ResearchRoute,
