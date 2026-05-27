@@ -32,7 +32,7 @@ export const Route = createFileRoute("/chat")({
 const chatTransport = new DefaultChatTransport({ api: "/api/chat" });
 
 function ChatInterface() {
-  const { messages, sendMessage, status, error, reload } = useChat({
+  const { messages, sendMessage, status, error, setMessages } = useChat({
     transport: chatTransport,
   });
   const [input, setInput] = useState("");
